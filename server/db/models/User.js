@@ -20,6 +20,9 @@ const User = db.define('user', {
         hooks: {
             beforeCreate: setSaltAndPassword,
             beforeUpdate: setSaltAndPassword
+        },
+        google_id: {
+            type: Sequelize.STRING
         }
     });
 
