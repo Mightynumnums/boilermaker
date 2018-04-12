@@ -1,9 +1,10 @@
 module.exports = {
     entry: './client/index.js',
     output: {
-        path: __dirname,
-        filename: './public/bundle.js'
+        path: __dirname + '/public',
+        filename: 'bundle.js'
     },
+    context: __dirname,
     devtool: 'source-map',
     module: {
         rules: [
@@ -12,7 +13,7 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['react', 'es2015']
+                    presets: ['react', 'env', 'es2015', 'stage-2']
                 }
             },
             // use the style-loader/css-loader combos for anything matching the .css extension
