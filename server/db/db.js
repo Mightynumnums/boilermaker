@@ -1,16 +1,11 @@
 const Sequelize = require('sequelize');
+const pkg = require('../../package.json')
 
-const db = new Sequelize('postgres://localhost:5432/yourdbname', {
-    logging: false // unless you like the logs
-    // ...and there are many other options you may want to play with
-});
-//or if using Heroku as a deployment service ad Heroku Postgres as your database:
-//
-// const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432:yourdbname', {
-//   logging: false // unless you like the logs
-//   // ...and there are many other options you may want to play with
-// });
+const databaseName = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '')
 
+const db = new Sequelize(
+    process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`, {
+        logging: false // unless you like the logs
+    });
 
-
-module.exports = db;
+module.exports = db
